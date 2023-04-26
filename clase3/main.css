@@ -1,0 +1,9 @@
+main {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+}
+aside {
+    display: flex;
+    flex-direction: column;
+}
