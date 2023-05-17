@@ -5,100 +5,172 @@
     <meta charset="UTF-8">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>CV</title>
+    <title>Mi CV</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.4.0/css/bootstrap.min.css">
     <link rel="stylesheet" href="./main.css">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Ysabeau:ital,wght@1,1;1,300&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Quicksand&display=swap" rel="stylesheet">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Bitter:wght@700&display=swap" rel="stylesheet">
 </head>
 
 <body>
     <header>
-        <div>
-            <img src="https://images.unsplash.com/photo-1634926878768-2a5b3c42f139?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fGF2YXRhcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=400&q=60"
-                alt="">
+        <div id="photo">
+            <!-- <img src="https://images.unsplash.com/photo-1634926878768-2a5b3c42f139?ixlib=rb-4.0.3&ixid=MnwxMjA3fDB8MHxzZWFyY2h8MTR8fGF2YXRhcnxlbnwwfHwwfHw%3D&auto=format&fit=crop&w=400&q=60" -->
+                <!-- alt=""> -->
+                <img class="name image-profile" src="./assets/img/cvsPic.png" alt="Diana Diaz Electronic Engineer">
         </div>
-        <section>
+        <section id="introSection">
             <h1>Diana Carolina Díaz García</h1>
-            <p>
-                Lorem, ipsum dolor sit amet consectetur adipisicing elit. Fugiat, itaque facilis. Deleniti corrupti neque
-            eos dolores exercitationem minus sit quas voluptate illo. Ratione debitis cupiditate error? Cupiditate
-            tenetur sint a!
-
-            Lorem ipsum dolor, sit amet consectetur adipisicing elit. Ea a amet hic corporis ut doloremque et, voluptate
-            neque! Aperiam eaque modi aliquam sapiente voluptas voluptates beatae optio officiis dolore placeat.
+            <p class="subtitle">
+                Electronic Engineer
             </p>
         </section>
 
     </header>
     <main>
-        <span>
+        <section id="basicInformation">
             <section id="contactsSection">
-                <h2>Contacts</h2>
-                <article>
-                    <h3>Email</h3>
-                    <ul>
-                        <li>test@test.com</li>
+                <h2 class="titleText">Contacts</h2>
+                <article class="infoContainer">
+                    <h4 class="titleText">Email</h4>
+                    <ul class="infoContent">
+                        <li><span class="glyphicon glyphicon-envelope"></span> caroodzg@gmail.com</li>
                     </ul>
                 </article>
     
-                <article>
-                    <h3>Phone</h3>
-                    <ul>
-                        <li>445567233434</li>
+                <article class="infoContainer">
+                    <h4 class="titleText">Phone</h4>
+                    <ul class="infoContent">
+                        <li><span class="glyphicon glyphicon-earphone"></span> 5585494160</li>
                     </ul>
                 </article>
-    
-                <article>
-                    <h3>Residence</h3>
-                    <ul>
-                        <li>Mexico, Puebla</li>
+        
+                <article class="infoContainer">
+                    <h4 class="titleText">Residence</h4>
+                    <ul class="infoContent">
+                        <li><span class="glyphicon glyphicon-map-marker"></span> Mexico, Puebla</li>
                     </ul>
                 </article>
             </section>
             <hr>
             <section id="languagesSection">
-                <h2>Languages</h2>
-                <table>
-                    <tr>
-                        <th>English</th>
-                        <th>100%</th>
-                    </tr>
-                    <tr>
-                        <th>Spanish</th>
-                        <th>100%</th>
-                    </tr>
-                    <tr>
-                        <th>French</th>
-                        <th>50%</th>
-                    </tr>
-                </table>
+                    <h2 class="titleText">Languages</h2>
+                    <table class="languages">
+                        <tr>
+                            <th>English</th>
+                            <th>100%</th>
+                        </tr>
+                        <tr>
+                            <th>Spanish</th>
+                            <th>100%</th>
+                        </tr>
+                        <tr>
+                            <th>French</th>
+                            <th>50%</th>
+                        </tr>
+                    </table>
             </section>
-        </span>
-        <section>
-            <h3>Work Experience</h3>
+            <hr>
+            <section id="technicalSkillsSection">
+                <h2 class="titleText">Technical Skills</h2>
+                <ul class="skills">
+                    <li>Microsoft Office</li>
+                    <li>HTML</li>
+                    <li>CSS</li>
+                    <li>Javascript</li>
+                    <li>C#</li>
+                    <li>Python</li>
+                    <li>LateX</li>
+                </ul>
+            </section>
+            <section id="softSkillsSection">
+                <h2 class="titleText">Soft Skills</h2>
+                <ul class="infoContent">
+                    <li>Teamwork</li>
+                    <li>Adaptation</li>
+                    <li>Communication</li>
+                    <li>Responsability</li>
+                    <li>Organization</li>
+                </ul>
+            </section>
+        </section>
+        <section id="experienceInformation">
+            <h3 class="titleText" >Work Experience</h3>
             <section id="workExperience1Section">
-                <h4>Junior Software Engineer</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Reprehenderit atque eveniet veritatis omnis iure nemo sit, fugiat id placeat, numquam, hic odio vero deserunt corrupti modi deleniti ducimus architecto. Quibusdam adipisci accusamus alias ratione inventore! Quisquam animi quia, aperiam modi cupiditate dolorem nobis fugiat eaque ducimus, corrupti, labore inventore at laboriosam nesciunt laudantium! Iure tempore id nemo vero reprehenderit praesentium sequi distinctio. Enim, deleniti id sequi ad exercitationem natus! Quos aperiam corrupti cum tenetur, quidem cupiditate. Voluptas dolorem laudantium modi, minus vitae ipsa reiciendis qui omnis, quia natus voluptate unde architecto nam a ab. Nostrum voluptatum modi dicta corporis a!
-                </p>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Sunt facere maxime quibusdam, provident fugit, debitis sed magnam voluptates repellat nulla commodi unde beatae ea corporis minus dolore alias porro ad fuga magni. Officiis quis odio nihil asperiores expedita eius porro omnis, aliquam dolor laboriosam non? Consequuntur laboriosam voluptate animi rerum ipsa fugit minima dignissimos, corrupti veniam dicta quisquam repudiandae esse? Quo autem tempora porro minima libero, rerum, illum suscipit mollitia eligendi delectus esse sunt, cumque ea beatae exercitationem nesciunt quia explicabo non? Impedit, praesentium. Harum sit consequatur ducimus autem consequuntur?
-                </p>
+                <h4 class="titleText" >Junior Software Engineer</h4>
+                <div>
+                    <h5><strong>Polyworks México</strong> </h5>
+                    <p><span class="glyphicon glyphicon-calendar"></span> July 2022 - Ongoing</p>
+                    <ul>
+                        <li>Feature Implementation</li>
+                        <li>Unitary Testing of Implementation</li>
+                        <li>Funtional Testing of Implementation</li>
+                        <li>Agile Process</li>
+                        <li>Code Review</li>
+                        <li>Bug Solving</li>
+                    </ul>
+                </div>
             </section>
+
             <section id="workExperience2Section">
-                <h4>Security Network Manager</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Dolorem ipsum aspernatur laborum praesentium natus deleniti minus facilis quos deserunt omnis earum atque dolor sunt molestias, tempora voluptates commodi, nostrum veniam fugit doloremque ex maxime accusamus voluptatibus recusandae. Cupiditate necessitatibus culpa obcaecati omnis iusto sint minima, tempora asperiores sapiente illo adipisci!
-                </p>
+                <h4 class="titleText" >IT Technician</h4>
+                <div>
+                    <h5><strong>Polyworks México</strong> </h5>
+                    <p><span class="glyphicon glyphicon-calendar"></span> October 2021 - July 2022</p>
+                    <ul>
+                        <li> Administration, implementation and maintenance of perimeter
+                            security in network infrastructure.</li>
+                        <li>Administration, implementation and maintenance of equipment.</li>
+                        <li>Administration, implementation and maintenance of Virtual
+                            environment.</li>
+                        <li>Technical support of networks and communications.</li>
+                        <li>Confluence and Jira administration and configuration.</li>
+                    </ul>
+                </div>
             </section>
-            <h3>Education</h3>
-            <section id="eduaation1Section">
-                <h4>Bachelor of Electronic Engineer</h4>
-                <p>
-                    Lorem ipsum dolor sit amet consectetur adipisicing elit. Minus impedit exercitationem eligendi molestiae ad, cum rerum animi illum vel minima. Voluptatem ipsum neque blanditiis ab a maiores. Accusamus, fuga aut?
-                </p>
-                <h4>Data Scientist</h4>
-                <p>
-                    Lorem ipsum, dolor sit amet consectetur adipisicing elit. Non unde id harum nesciunt quam vero. Perferendis velit temporibus qui esse quas aut autem quisquam iure.
-                </p>
+
+            <section id="workExperience3Section">
+                <h4 class="titleText" >Information Security Consultant</h4>
+                <div>
+                    <h5><strong>Polyworks México</strong> </h5>
+                    <p><span class="glyphicon glyphicon-calendar"></span> September 2019 - September 2021</p>
+                    <ul>
+                        <li>Network infrastructure design.</li>
+                        <li>Perimeter security in network infrastructure.</li>
+                        <li>Administration, implementation and maintenance of equipment.</li>
+                        <li>Technical support of networks and communications.</li>
+                        <li>Cloud network security and design.</li>
+                    </ul>
+                </div>
+            </section>
+            <h3 class="titleText" >Education</h3>
+            <section id="educationSection">
+                <h4 class="titleText" >Bachelor of Electronic Engineer</h4>
+                <div>
+                    <h5><strong>Universidad de las Américas Puebla</strong> </h5>
+                    <p><span class="glyphicon glyphicon-calendar"></span> August 2015 - June 2020</p>
+                </div>
+            </section>
+            <h3 class="titleText">Courses</h3>
+            <section id="educationSection">
+                <h4 class="titleText" >FrontEnd Developer</h4>
+                <div>
+                    <h5><strong>Coder House</strong> </h5>
+                    <p><span class="glyphicon glyphicon-calendar"></span> May 2022 - November 2022</p>
+                </div>
+                <h4 class="titleText" >Data Science</h4>
+                <div>
+                    <h5><strong>Acámica</strong> </h5>
+                    <p><span class="glyphicon glyphicon-calendar"></span> November 2019 - Febrero 2021</p>
+                </div>
+                <h4 class="titleText" >Data Security and Ethical Hacking</h4>
+                <div>
+                    <h5><strong>Acámica</strong> </h5>
+                    <p><span class="glyphicon glyphicon-calendar"></span> June 2019</p>
+                </div>
             </section>
         </section>
     </main>

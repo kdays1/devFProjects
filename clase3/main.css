@@ -1,12 +1,72 @@
+/* mixins */
 main {
     display: flex;
     flex-direction: row;
     align-items: stretch;
+    font-family: 'Courier New', Courier, monospace;
 }
 aside {
     display: flex;
     flex-direction: column;
 }
 p {
-    color: blueviolet;
+    font-family: 'Quicksand', sans-serif;
+}
+img {
+    border-radius: 20%;
+}
+header {
+    display: flex;
+    flex-direction: row;
+    align-items: stretch;
+    font-family: 'Courier New', Courier, monospace;
+}
+section {
+    margin: 10px;
+}
+
+.name {
+    width: 50%;
+    margin-left: 20px;
+    margin-top: 20px;
+}
+div {
+    width: fit-content;
+    align-items: center;
+}
+
+.image-profile:hover {
+    width: 67%;
+}
+h1 {
+    font-family: 'Ysabeau', sans-serif;
+}
+.titleText {
+    font-family: 'Bitter', serif;
+}
+
+
+
+/* specifics */
+
+.infoContent {
+    list-style: none;
+    padding-left: 0;
+}
+
+.skills {
+    list-style: none;
+    padding-left: 0;
+}
+
+.infoContainer {
+    width: 225px;
+}
+
+.languages th, td {
+    padding: 5px;
+}
+
+#photo {
+    width: 225px;
 }
