@@ -1,0 +1,41 @@
+.headerImage {
+    width: 50px;
+}
+.headerContainer {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+    flex-direction: row;
+}
+#logoSection {
+    margin-top: 50px;
+    text-align: center;
+}
+.btn-search {
+    padding: 5px;
+    margin: 10px;
+    background-color: rgb(161, 67, 161);
+    color: antiquewhite;
+    border: ghostwhite;
+}
+.btn-search:hover {
+    background-color: rgb(129, 93, 163);
+}
+.buttonsContainer{
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: row;
+}
+#searchSection {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+}
+#input-search{
+    margin-top: 5px;
+}
+#input-search:hover {
+    background-color: rgb(230, 206, 178);
+}
