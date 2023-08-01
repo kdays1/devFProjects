@@ -2,15 +2,20 @@ const PokemonTotalNumber = 151;
 let pokemonArray= [];
 const promises= [];
 
+function pokemonProtoype(name, imageUrl, types, number) {
+    this.name = name;
+    this.imageUrl = imageUrl;
+    this.types = types;
+    this.number = number;
+}
+
 function orderPokemonData(allPokemonInfo) {
     for(let i=0;i<allPokemonInfo.length;i++) {
-        let _pokemon = {
-            name: allPokemonInfo[i].name,
-            imageUrl: allPokemonInfo[i].sprites.front_default,
-            types: allPokemonInfo[i].types,
-            number: allPokemonInfo[i].id
-        }
-        pokemonArray.push(_pokemon);
+        let name= allPokemonInfo[i].name;
+        let imageUrl= allPokemonInfo[i].sprites.front_default;
+        let types= allPokemonInfo[i].types;
+        let number= allPokemonInfo[i].id;
+        pokemonArray.push(new pokemonProtoype(name, imageUrl, types, number));
     }
     createCards(pokemonArray);
 }
