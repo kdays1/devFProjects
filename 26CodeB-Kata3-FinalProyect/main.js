@@ -1,29 +1,38 @@
 const PokemonTotalNumber = 151;
 let pokemonArray= [];
+const promises= [];
 
-function fetchPokemon(id) {
-    fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`)
-        .then((res) => res.json())
-        .then((data) => {
-            let _pokemon = {
-                name: data.name,
-                imageUrl: data.sprites.front_default,
-                types: data.types,
-                number: data.id
-            }
-        //console.log(_pokemon);
+function orderPokemonData(allPokemonInfo) {
+    for(let i=0;i<allPokemonInfo.length;i++) {
+        let _pokemon = {
+            name: allPokemonInfo[i].name,
+            imageUrl: allPokemonInfo[i].sprites.front_default,
+            types: allPokemonInfo[i].types,
+            number: allPokemonInfo[i].id
+        }
         pokemonArray.push(_pokemon);
-        });
-}
-
-function fetchAllPokemon(){
-    for (let i=1; i<=PokemonTotalNumber; i++) {
-        fetchPokemon(i);
     }
+    createCards(pokemonArray);
 }
 
-fetchAllPokemon();
-console.log(pokemonArray);
+function createPokemonPromises() {
+    for (let i=1; i<=PokemonTotalNumber; i++) {
+        promises.push(fetch(`https://pokeapi.co/api/v2/pokemon/${i}/`));
+    }
+    Promise.all(promises)
+        .then((res) => {
+            Promise.all(res.map((item) => {
+                return item.json();
+            }))
+            .then(data => orderPokemonData(data));
+            // createCards(pokemonArray);
+        })
+        .catch((e) => {
+            console.log('There was an error in the multiple fetch');
+        })
+    }
+
+createPokemonPromises();
 
 function createImageItem(url, name) {
     let img = document.createElement('img');
@@ -70,40 +79,24 @@ function createCardBody(_data) {
     return cardBody
 }
 
-// function createCards() {
-//     let container = document.querySelector('#cardsContainer');
-//     for (let i=1; i<=PokemonTotalNumber; i++) {
-//         fetch(`https://pokeapi.co/api/v2/pokemon/${i}/`)
-//         .then((res) => res.json())
-//         .then((pokemonFetched) => {
-//             let pokemon = document.createElement('card');
-//             pokemon.classList.add('card', 'cards');
-//             pokemon.id = i;
-//             pokemon.appendChild(createImageItem(pokemonFetched.sprites.front_default, pokemonFetched.name));
-//             pokemon.appendChild(createCardBody(pokemonFetched));
-//             container.appendChild(pokemon);
-//         });
-//     }
-// }
-// //End Private Functions Region
 
-function createCards() {
+function createCards(_pokemonArray) {
     let container = document.querySelector('#cardsContainer');
     container.innerHTML = '';
-    for (let i=1; i<=PokemonTotalNumber; i++) {
+    for (let i=0; i<PokemonTotalNumber; i++) {
         let pokemon = document.createElement('card');
         pokemon.classList.add('card', 'cards');
-        pokemon.id = pokemonArray[i].number;
-        pokemon.appendChild(createImageItem(pokemonArray[i].imageUrl, pokemonArray.name));
-        pokemon.appendChild(createCardBody(pokemonArray));
+        pokemon.id = _pokemonArray[i].number;
+        pokemon.appendChild(createImageItem(_pokemonArray[i].imageUrl, _pokemonArray.name));
+        pokemon.appendChild(createCardBody(_pokemonArray[i]));
         container.appendChild(pokemon);
     }
 }
 //End Private Functions Region
 
 //Events Region
-document.addEventListener('DOMContentLoaded', function(evt) {
-    createCards();
-})
+// document.addEventListener('DOMContentLoaded', function(evt) {
+//     createCards(pokemonArray);
+// })
 //End events region
 
