@@ -1,3 +1,5 @@
+const PokemonTotalNumber = 151;
+
 const data = [
     {
         name: 'nombre X',
@@ -110,7 +112,7 @@ function createCardTitle(name) {
     return cardTitle
 }
 
-function createCardText(type, number) {
+function createCardText(types, number) {
     let cardText = document.createElement('p');
     cardText.classList.add('card-text');
     cardText.textContent = 'Number: ' + number;
@@ -122,20 +124,24 @@ function createCardBody(_data) {
     let cardBody = document.createElement('div');
     cardBody.classList.add('card-body');
     cardBody.appendChild(createCardTitle(_data.name));
-    cardBody.appendChild(createCardText(_data.type, _data.number))
+    cardBody.appendChild(createCardText(_data.types, _data.id))
 
     return cardBody
 }
 
 function createCards() {
     let container = document.querySelector('#cardsContainer');
-    for (let i=0; i<data.length;i++) {
+    for (let i=1; i<=PokemonTotalNumber; i++) {
+        fetch(`https://pokeapi.co/api/v2/pokemon/${i}/`)
+      .then((res) => res.json())
+      .then((pokemonFetched) => {
         let pokemon = document.createElement('card');
         pokemon.classList.add('card', 'cards');
         pokemon.id = i;
-        pokemon.appendChild(createImageItem(data[i].imageUrl, data[i].name));
-        pokemon.appendChild(createCardBody(data[i]));
+        pokemon.appendChild(createImageItem(pokemonFetched.sprites.front_default, pokemonFetched.name));
+        pokemon.appendChild(createCardBody(pokemonFetched));
         container.appendChild(pokemon);
+      });
     }
 }
 //End Private Functions Region
@@ -146,3 +152,11 @@ document.addEventListener('DOMContentLoaded', function(evt) {
     createCards();
 })
 //End events region
+
+function fetchPokemon(id) {
+    fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`)
+      .then((res) => res.json())
+      .then((data) => {
+        
+      });
+  }
