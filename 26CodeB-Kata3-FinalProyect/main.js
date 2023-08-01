@@ -3,18 +3,18 @@ let pokemonArray= [];
 
 function fetchPokemon(id) {
     fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`)
-      .then((res) => res.json())
-      .then((data) => {
-        let _pokemon = {
-            name: data.name,
-            imageUrl: data.sprites.front_default,
-            types: data.types,
-            number: data.id
-        }
+        .then((res) => res.json())
+        .then((data) => {
+            let _pokemon = {
+                name: data.name,
+                imageUrl: data.sprites.front_default,
+                types: data.types,
+                number: data.id
+            }
         //console.log(_pokemon);
         pokemonArray.push(_pokemon);
-      });
-  }
+        });
+}
 
 function fetchAllPokemon(){
     for (let i=1; i<=PokemonTotalNumber; i++) {
@@ -89,18 +89,15 @@ function createCardBody(_data) {
 
 function createCards() {
     let container = document.querySelector('#cardsContainer');
+    container.innerHTML = '';
     for (let i=1; i<=PokemonTotalNumber; i++) {
-        fetch(`https://pokeapi.co/api/v2/pokemon/${i}/`)
-        .then((res) => res.json())
-        .then((pokemonFetched) => {
-            let pokemon = document.createElement('card');
-            pokemon.classList.add('card', 'cards');
-            pokemon.id = pokemonArray[i].number;
-            pokemon.appendChild(createImageItem(pokemonArray[i].imageUrl, pokemonArray.name));
-            pokemon.appendChild(createCardBody(pokemonArray));
-            container.appendChild(pokemon);
-        }
-    )}
+        let pokemon = document.createElement('card');
+        pokemon.classList.add('card', 'cards');
+        pokemon.id = pokemonArray[i].number;
+        pokemon.appendChild(createImageItem(pokemonArray[i].imageUrl, pokemonArray.name));
+        pokemon.appendChild(createCardBody(pokemonArray));
+        container.appendChild(pokemon);
+    }
 }
 //End Private Functions Region
 
