@@ -57,6 +57,7 @@ function createCardBody(_data) {
 
 function createCards() {
     let container = document.querySelector('#cardsContainer');
+    container.innerHTML = '';
     for (let i=1; i<=PokemonTotalNumber; i++) {
         fetch(`https://pokeapi.co/api/v2/pokemon/${i}/`)
         .then((res) => res.json())
