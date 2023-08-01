@@ -23,6 +23,7 @@ function fetchAllPokemon(){
 }
 
 fetchAllPokemon();
+console.log(pokemonArray);
 
 function createImageItem(url, name) {
     let img = document.createElement('img');
@@ -87,8 +88,11 @@ function createCardBody(_data) {
 // //End Private Functions Region
 
 function createCards() {
-        let container = document.querySelector('#cardsContainer');
-        for (let i=1; i<=PokemonTotalNumber; i++) {
+    let container = document.querySelector('#cardsContainer');
+    for (let i=1; i<=PokemonTotalNumber; i++) {
+        fetch(`https://pokeapi.co/api/v2/pokemon/${i}/`)
+        .then((res) => res.json())
+        .then((pokemonFetched) => {
             let pokemon = document.createElement('card');
             pokemon.classList.add('card', 'cards');
             pokemon.id = pokemonArray[i].number;
@@ -96,7 +100,8 @@ function createCards() {
             pokemon.appendChild(createCardBody(pokemonArray));
             container.appendChild(pokemon);
         }
-    }
+    )}
+}
 //End Private Functions Region
 
 //Events Region
