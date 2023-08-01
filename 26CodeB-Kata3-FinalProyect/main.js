@@ -96,7 +96,8 @@ function createImageItem(url, name) {
     let img = document.createElement('img');
     img.src = url;
     img.alt = name;
-    img.classList.add('card-img-top');
+    img.classList.add('card-img-top', 'cardPictures');
+
 
     return img
 }
@@ -130,7 +131,7 @@ function createCards() {
     let container = document.querySelector('#cardsContainer');
     for (let i=0; i<data.length;i++) {
         let pokemon = document.createElement('card');
-        pokemon.classList.add('card');
+        pokemon.classList.add('card', 'cards');
         pokemon.id = i;
         pokemon.appendChild(createImageItem(data[i].imageUrl, data[i].name));
         pokemon.appendChild(createCardBody(data[i]));
