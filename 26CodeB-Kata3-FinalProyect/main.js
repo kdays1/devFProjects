@@ -1,12 +1,32 @@
 const PokemonTotalNumber = 151;
-let pokemonArray= [];
-const promises= [];
+let pokemonArray = [];
+let orderedPokemonArray = [];
+const promises = [];
 
+// Protoype Region
 function pokemonProtoype(name, imageUrl, types, number) {
     this.name = name;
     this.imageUrl = imageUrl;
     this.types = types;
     this.number = number;
+}
+//End Protoype Region
+
+//Private Functions Region
+function orderPokemonByName() {
+    orderedPokemonArray = [...pokemonArray];
+    const n = orderedPokemonArray.length;
+    for (let i = 1; i < n; i++) {
+        let currentElement = orderedPokemonArray[i];
+        let j = i - 1;
+
+        while (j >= 0 && orderedPokemonArray[j].name > currentElement.name) {
+            orderedPokemonArray[j + 1] = orderedPokemonArray[j];
+            j--;
+        }
+
+        orderedPokemonArray[j + 1] = currentElement;
+    }
 }
 
 function orderPokemonData(allPokemonInfo) {
@@ -18,6 +38,7 @@ function orderPokemonData(allPokemonInfo) {
         pokemonArray.push(new pokemonProtoype(name, imageUrl, types, number));
     }
     createCards(pokemonArray);
+    orderPokemonByName(pokemonArray);
 }
 
 function createPokemonPromises() {
@@ -30,7 +51,6 @@ function createPokemonPromises() {
                 return item.json();
             }))
             .then(data => orderPokemonData(data));
-            // createCards(pokemonArray);
         })
         .catch((e) => {
             console.log('There was an error in the multiple fetch');
@@ -88,7 +108,7 @@ function createCardBody(_data) {
 function createCards(_pokemonArray) {
     let container = document.querySelector('#cardsContainer');
     container.innerHTML = '';
-    for (let i=0; i<PokemonTotalNumber; i++) {
+    for (let i=0; i<_pokemonArray.length; i++) {
         let pokemon = document.createElement('card');
         pokemon.classList.add('card', 'cards');
         pokemon.id = _pokemonArray[i].number;
@@ -97,11 +117,32 @@ function createCards(_pokemonArray) {
         container.appendChild(pokemon);
     }
 }
+
+function searchPokemonName(_pokemon) {
+    let startIndex  = 0,
+        stopIndex   = orderedPokemonArray.length - 1,
+        middle      = Math.floor((stopIndex + startIndex)/2);
+
+    while(orderedPokemonArray[middle].name != _pokemon && startIndex < stopIndex){
+        if (_pokemon < orderedPokemonArray[middle].name){
+            stopIndex = middle - 1;
+        } else if (_pokemon > orderedPokemonArray[middle].name){
+            startIndex = middle + 1;
+        }
+        middle = Math.floor((stopIndex + startIndex)/2);
+    }
+    createCards([orderedPokemonArray[middle]]);
+}
 //End Private Functions Region
 
 //Events Region
-// document.addEventListener('DOMContentLoaded', function(evt) {
-//     createCards(pokemonArray);
-// })
-//End events region
+function searchPokemon (event) {
+    event.preventDefault();
+    let pokemonName = document.getElementById('searchPokemonByName').value;
+    searchPokemonName(pokemonName);
+};
 
+function allPokemons () {
+    createCards(pokemonArray);
+}
+//End events region
