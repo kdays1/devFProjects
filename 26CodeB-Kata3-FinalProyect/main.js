@@ -47,7 +47,7 @@ function createCardText(key, value) {
     if(value.length){
         let content = key + ': '
         for(let i=0; i<value.length; i++) {
-            content = content + ' ' + value[i].type.name;
+            content = i===0 ? content + ' ' + value[i].type.name : content + ' / ' + value[i].type.name;
         }
         cardText.textContent = content;
     } else {
@@ -61,7 +61,9 @@ function createCardBody(_data) {
     let cardBody = document.createElement('div');
     cardBody.classList.add('card-body');
     cardBody.appendChild(createCardTitle(_data.name));
+    cardBody.appendChild(document.createElement('hr'));
     cardBody.appendChild(createCardText('Type', _data.types));
+    cardBody.appendChild(document.createElement('hr'));
     cardBody.appendChild(createCardText('Number', _data.number));
 
     return cardBody
