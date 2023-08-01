@@ -1,14 +1,28 @@
 const PokemonTotalNumber = 151;
-let data= [];
+let pokemonArray= [];
 
-//Private Functions Region
 function fetchPokemon(id) {
     fetch(`https://pokeapi.co/api/v2/pokemon/${id}/`)
-    .then((res) => res.json())
-    .then((data) => {
-        data.push();
-    });
-} 
+      .then((res) => res.json())
+      .then((data) => {
+        let _pokemon = {
+            name: data.name,
+            imageUrl: data.sprites.front_default,
+            types: data.types,
+            number: data.id
+        }
+        //console.log(_pokemon);
+        pokemonArray.push(_pokemon);
+      });
+  }
+
+function fetchAllPokemon(){
+    for (let i=1; i<=PokemonTotalNumber; i++) {
+        fetchPokemon(i);
+    }
+}
+
+fetchAllPokemon();
 
 function createImageItem(url, name) {
     let img = document.createElement('img');
@@ -48,31 +62,44 @@ function createCardBody(_data) {
     cardBody.classList.add('card-body');
     cardBody.appendChild(createCardTitle(_data.name));
     cardBody.appendChild(createCardText('Type', _data.types));
-    cardBody.appendChild(createCardText('Number', _data.id));
+    cardBody.appendChild(createCardText('Number', _data.number));
 
     return cardBody
 }
 
+// function createCards() {
+//     let container = document.querySelector('#cardsContainer');
+//     for (let i=1; i<=PokemonTotalNumber; i++) {
+//         fetch(`https://pokeapi.co/api/v2/pokemon/${i}/`)
+//         .then((res) => res.json())
+//         .then((pokemonFetched) => {
+//             let pokemon = document.createElement('card');
+//             pokemon.classList.add('card', 'cards');
+//             pokemon.id = i;
+//             pokemon.appendChild(createImageItem(pokemonFetched.sprites.front_default, pokemonFetched.name));
+//             pokemon.appendChild(createCardBody(pokemonFetched));
+//             container.appendChild(pokemon);
+//         });
+//     }
+// }
+// //End Private Functions Region
+
 function createCards() {
-    let container = document.querySelector('#cardsContainer');
-    for (let i=1; i<=PokemonTotalNumber; i++) {
-        fetch(`https://pokeapi.co/api/v2/pokemon/${i}/`)
-        .then((res) => res.json())
-        .then((pokemonFetched) => {
+        let container = document.querySelector('#cardsContainer');
+        for (let i=1; i<=PokemonTotalNumber; i++) {
             let pokemon = document.createElement('card');
             pokemon.classList.add('card', 'cards');
-            pokemon.id = i;
-            pokemon.appendChild(createImageItem(pokemonFetched.sprites.front_default, pokemonFetched.name));
-            pokemon.appendChild(createCardBody(pokemonFetched));
+            pokemon.id = pokemonArray[i].number;
+            pokemon.appendChild(createImageItem(pokemonArray[i].imageUrl, pokemonArray.name));
+            pokemon.appendChild(createCardBody(pokemonArray));
             container.appendChild(pokemon);
-        });
+        }
     }
-}
 //End Private Functions Region
-
 
 //Events Region
 document.addEventListener('DOMContentLoaded', function(evt) {
     createCards();
 })
 //End events region
+
