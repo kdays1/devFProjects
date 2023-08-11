@@ -1,0 +1,14 @@
+{
+  "name": "clase2",
+  "version": "1.0.0",
+  "description": "Callbacks",
+  "main": "main.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "author": "Caro Diaz",
+  "license": "ISC",
+  "dependencies": {
+    "bootstrap": "^5.3.1"
+  }
+}
