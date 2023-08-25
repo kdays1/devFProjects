@@ -6,6 +6,7 @@ axios.get(urlAPI)
         const userData = response.data.results[0]
 
         console.log('Nombre: ', userData.name.first, userData.name.last)
+        console.log('Email: ', userData.email)
     })
     .catch(error => {
         console.log('Hubo un error al consumir la api... ', error)
