@@ -2,9 +2,11 @@
 // const urlAPI = 'https://rickandmortyapi.com/api/character'
 const PokemonTotalNumber = 1008;
 let pokemonArray = [];
-let orderedPokemonArray = [];
+let searchArray = [];
 const promises = [];
+const container = document.querySelector('#cardsContainer');
 
+//Private Functions
 function pokemonProtoype(name, imageUrl, types, number) {
     this.name = name;
     this.imageUrl = imageUrl;
@@ -21,14 +23,36 @@ function orderPokemonDataStructure(allPokemonInfo) {
         pokemonArray.push(new pokemonProtoype(name, imageUrl, types, number));
     }
     createCards(pokemonArray);
-    orderPokemonByName(pokemonArray);
 }
 
+function searchPokemonName(name) {
+    searchArray = [];
+    searchArray = pokemonArray.filter(pokemon => pokemon.name.includes(name))
+    createCards(searchArray);
+}
+
+function orderPokemonByType(_pokemon) {
+    var addPokemon;
+    searchArray = [];
+    for(var i=0; i<_pokemon.length; i++) {
+        addPokemon = pokemonArray.filter(pkmn => pkmn.name == _pokemon[i].pokemon.name)
+        if (addPokemon) {
+            searchArray.push(addPokemon[0]);
+        }
+    }
+    if(searchArray.length>0) {
+        createCards(searchArray);
+    } else {
+        container.innerHTML = '<h1 class="text-white bg-dark">No matching Pokemon</h1>';
+    }
+}
+
+//Functions interacting with view
 function createImageItem(url, name) {
     let img = document.createElement('img');
     img.src = url;
     img.alt = name;
-    img.classList.add('card-img-top', 'cardPictures');
+    img.classList.add('card-img-top');
 
     return img
 }
@@ -74,7 +98,7 @@ function createCards(_pokemonArray) {
     container.innerHTML = '';
     for (let i=0; i<_pokemonArray.length; i++) {
         let pokemon = document.createElement('card');
-        pokemon.classList.add('card', 'cards');
+        pokemon.classList.add('card', 'cards', 'text-white');
         pokemon.id = _pokemonArray[i].number;
         pokemon.appendChild(createImageItem(_pokemonArray[i].imageUrl, _pokemonArray.name));
         pokemon.appendChild(createCardBody(_pokemonArray[i]));
@@ -82,7 +106,9 @@ function createCards(_pokemonArray) {
     }
 }
 
+//API requests
 function createPokemonPromises() {
+    container.innerHTML = '<h1 class="text-white bg-dark">...Loading Pokemon...</h1>';
     for (let i=1; i<=PokemonTotalNumber; i++) {
         promises.push(fetch(`https://pokeapi.co/api/v2/pokemon/${i}/`));
     }
@@ -98,4 +124,26 @@ function createPokemonPromises() {
         })
     }
 
+function requestPokemonByType(_type) {
+    fetch(`https://pokeapi.co/api/v2/type/${_type}/`)
+        .then(res => res.json())
+            .then(data => orderPokemonByType(data.pokemon));
+}
+
 createPokemonPromises();
+
+//Events
+function searchPokemon (event) {
+    event.preventDefault();
+    let pokemonName = document.getElementById('searchPokemonByName').value;
+    searchPokemonName(pokemonName);
+};
+
+function allPokemons () {
+    createCards(pokemonArray);
+}
+
+function searchByType(type) {
+    container.innerHTML = '<h1 class="text-white bg-dark">...Loading Pokemon...</h1>';
+    requestPokemonByType(type);
+}

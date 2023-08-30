@@ -1,8 +1,12 @@
-.cardPictures {
-    width: 300px;
+body {
+    background-repeat: repeat;
+    background-image: url(./_img/backgroundPokemon.png);
 }
-.cards {
+
+#cardsContainer .cards {
     margin: 15px;
+    width: 300px;
+    background-color: hsla(0, 30%, 18%, 0.849);
 }
 .containerFlex {
     display: flex;
