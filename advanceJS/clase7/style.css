@@ -1,0 +1,32 @@
+#search {
+    padding-left: 10px;
+}
+
+h1 {
+    text-align: center;
+}
+
+.grid-container{
+    display: grid;
+    justify-content: center;  /* Align in the center */
+    align-items: start;       /* Set vertical alignment */
+    padding: 20px;
+}
+
+.countryCard {
+    padding: 5px;
+    margin: 15px;
+}
+
+.containerFlex {
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    justify-content: center;
+    align-items: center;
+}
+
+#flag {
+    width: 200px;
+    height: 135px;
+}
