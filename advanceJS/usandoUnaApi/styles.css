@@ -1,6 +1,6 @@
 body {
     background-repeat: repeat;
-    background-image: url(./_img/backgroundPokemon.png);
+    background-image: url(../_img/backgroundPokemon.png);
 }
 
 #cardsContainer .cards {
